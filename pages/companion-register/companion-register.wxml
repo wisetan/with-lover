@@ -1,0 +1,151 @@
+<!--pages/companion-register/companion-register.wxml-->
+<view class="register-container">
+  <view class="form-section">
+    <!-- 基本信息 -->
+    <view class="section-title">基本信息</view>
+    
+    <!-- 姓名 -->
+    <view class="form-item card {{formErrors.name ? 'form-item--error' : ''}}">
+      <view class="form-label">姓名 <text class="required">*</text></view>
+      <input
+        class="form-input"
+        placeholder="请输入真实姓名"
+        value="{{name}}"
+        bindinput="onNameInput"
+      />
+      <view class="form-error" wx:if="{{formErrors.name}}">{{formErrors.name}}</view>
+    </view>
+
+    <!-- 手机号 -->
+    <view class="form-item card {{formErrors.phone ? 'form-item--error' : ''}}">
+      <view class="form-label">手机号 <text class="required">*</text></view>
+      <input
+        class="form-input"
+        type="number"
+        placeholder="请输入手机号"
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+      />
+      <view class="form-error" wx:if="{{formErrors.phone}}">{{formErrors.phone}}</view>
+    </view>
+
+    <!-- 身份证号 -->
+    <view class="form-item card {{formErrors.idCard ? 'form-item--error' : ''}}">
+      <view class="form-label">身份证号 <text class="required">*</text></view>
+      <input
+        class="form-input"
+        placeholder="请输入身份证号"
+        value="{{idCard}}"
+        bindinput="onIdCardInput"
+      />
+      <view class="form-error" wx:if="{{formErrors.idCard}}">{{formErrors.idCard}}</view>
+    </view>
+
+    <!-- 头像 -->
+    <view class="form-item card {{formErrors.avatar ? 'form-item--error' : ''}}">
+      <view class="form-label">头像 <text class="required">*</text></view>
+      <view class="avatar-upload" bindtap="selectAvatar">
+        <image wx:if="{{avatar}}" src="{{avatar}}" mode="aspectFill" />
+        <view wx:else class="upload-placeholder">
+          <text>+</text>
+          <text class="upload-text">上传头像</text>
+        </view>
+      </view>
+      <view class="form-error" wx:if="{{formErrors.avatar}}">{{formErrors.avatar}}</view>
+    </view>
+
+    <!-- 认证证书 -->
+    <view class="form-item card {{formErrors.certificateImage ? 'form-item--error' : ''}}">
+      <view class="form-label">认证证书 <text class="required">*</text></view>
+      <view class="certificate-upload" bindtap="selectCertificate">
+        <image wx:if="{{certificateImage}}" src="{{certificateImage}}" mode="aspectFit" />
+        <view wx:else class="upload-placeholder">
+          <text>+</text>
+          <text class="upload-text">上传证书</text>
+        </view>
+      </view>
+      <view class="form-error" wx:if="{{formErrors.certificateImage}}">{{formErrors.certificateImage}}</view>
+    </view>
+  </view>
+
+  <!-- 服务范围 -->
+  <view class="form-section">
+    <view class="section-title">服务范围</view>
+    
+    <!-- 服务医院 -->
+    <view class="form-item card {{formErrors.hospitals ? 'form-item--error' : ''}}" bindtap="selectHospitals">
+      <view class="form-label">服务医院 <text class="required">*</text></view>
+      <view class="form-value">
+        <text wx:if="{{hospitals.length === 0}}" class="placeholder">请选择服务医院</text>
+        <text wx:else>{{hospitals.length}}个医院</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="form-error" wx:if="{{formErrors.hospitals}}">{{formErrors.hospitals}}</view>
+    </view>
+
+    <!-- 服务科室 -->
+    <view class="form-item card">
+      <view class="form-label">服务科室 <text class="required">*</text></view>
+      <view class="departments">
+        <view class="department-tag" wx:for="{{departments}}" wx:key="index">
+          {{item}}
+          <text class="tag-close" bindtap="removeDepartment" data-index="{{index}}">×</text>
+        </view>
+        <view class="add-department" bindtap="selectDepartments">
+          <text>+ 添加科室</text>
+        </view>
+      </view>
+      <view class="form-error" wx:if="{{formErrors.departments}}">{{formErrors.departments}}</view>
+    </view>
+  </view>
+
+  <!-- 可预约时间 -->
+  <view class="form-section">
+    <view class="section-title">可预约时间 <text class="required">*</text></view>
+    <view class="time-schedule">
+      <view class="time-day" wx:for="{{availableTime}}" wx:key="dayOfWeek">
+        <view class="day-name">{{['周日','周一','周二','周三','周四','周五','周六'][item.dayOfWeek]}}</view>
+        <view class="time-slots">
+          <view
+            class="time-slot {{item.timeSlots.includes('morning') ? 'time-slot--active' : ''}}"
+            data-index="{{index}}"
+            data-slot="morning"
+            bindtap="toggleTimeSlot"
+          >
+            上午
+          </view>
+          <view
+            class="time-slot {{item.timeSlots.includes('afternoon') ? 'time-slot--active' : ''}}"
+            data-index="{{index}}"
+            data-slot="afternoon"
+            bindtap="toggleTimeSlot"
+          >
+            下午
+          </view>
+          <view
+            class="time-slot {{item.timeSlots.includes('full_day') ? 'time-slot--active' : ''}}"
+            data-index="{{index}}"
+            data-slot="full_day"
+            bindtap="toggleTimeSlot"
+          >
+            全天
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="form-error" wx:if="{{formErrors.availableTime}}">{{formErrors.availableTime}}</view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="fixed-bottom">
+    <base-button
+      type="primary"
+      size="large"
+      text="提交注册"
+      block="{{true}}"
+      state="{{loading ? 'loading' : 'normal'}}"
+      bindtap="submitRegister"
+    />
+  </view>
+</view>
+

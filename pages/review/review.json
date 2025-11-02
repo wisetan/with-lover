@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "评价",
+  "usingComponents": {
+    "base-button": "/components/base-button/base-button"
+  }
+}
+
+

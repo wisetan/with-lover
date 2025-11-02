@@ -1,0 +1,49 @@
+<!--pages/hospital-list/hospital-list.wxml-->
+<view class="hospital-list-container">
+  <!-- 搜索栏 -->
+  <view class="search-section">
+    <view class="search-bar">
+      <input
+        class="search-input"
+        placeholder="搜索医院名称"
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+      />
+      <view class="search-icon">🔍</view>
+    </view>
+  </view>
+
+  <!-- 医院列表 -->
+  <view class="hospital-list" wx:if="{{hospitalList.length > 0}}">
+    <info-card
+      wx:for="{{hospitalList}}"
+      wx:key="_id"
+      title="{{item.name}}"
+      subtitle="{{item.address}} {{item.distanceText ? '· ' + item.distanceText : ''}}"
+      bindtap="onHospitalTap"
+      data-hospital="{{item}}"
+      arrow="{{true}}"
+    >
+      <view slot="content">
+        <view class="hospital-info">
+          <text class="info-label">{{item.departmentCount}}个科室</text>
+          <text class="info-departments">{{item.departments.join('、')}}</text>
+        </view>
+      </view>
+    </info-card>
+  </view>
+
+  <!-- 空状态 -->
+  <empty-state
+    wx:if="{{!loading && hospitalList.length === 0}}"
+    icon="🏥"
+    title="暂无医院"
+    description="暂无医院数据"
+  />
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>
+

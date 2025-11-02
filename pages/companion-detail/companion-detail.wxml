@@ -1,0 +1,90 @@
+<!--pages/companion-detail/companion-detail.wxml-->
+<view class="companion-detail-container">
+  <!-- 陪诊师信息卡片 -->
+  <view class="companion-info-card card" wx:if="{{companion}}">
+    <view class="companion-header">
+      <view class="avatar-wrapper">
+        <image class="companion-avatar" src="{{companion.avatar}}" mode="aspectFill" />
+        <view class="certified-badge" wx:if="{{companion.certification && companion.certification.certified}}">
+          ✓ 已认证
+        </view>
+      </view>
+      <view class="companion-base-info">
+        <view class="companion-name">{{companion.name}}</view>
+        <view class="companion-rating">
+          <text class="rating-text">综合评分</text>
+          <text class="rating-star">⭐</text>
+          <text class="rating-score">{{companion.rating ? companion.rating.toFixed(1) : '0.0'}}</text>
+          <text class="rating-count">({{companion.reviewCount || 0}}评价)</text>
+        </view>
+        <view class="companion-scope">
+          <text class="scope-label">服务范围：</text>
+          <text class="scope-text">{{companion.serviceScope ? (companion.serviceScope.hospitals ? companion.serviceScope.hospitals.join('、') : '') : '暂无'}}</text>
+        </view>
+        <view class="companion-stats">
+          <text class="stat-item">接单数：{{companion.orderCount || 0}}单</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 可预约时间 -->
+  <view class="section-card card" wx:if="{{availableTime.length > 0}}">
+    <view class="section-title">可预约时间</view>
+    <view class="time-slot-list">
+      <view class="time-slot-item" wx:for="{{availableTime}}" wx:key="dayOfWeek">
+        <view class="time-day">{{item.dayName}}</view>
+        <view class="time-slots">{{item.slotsText}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 用户评价 -->
+  <view class="section-card card" wx:if="{{reviews.length > 0}}">
+    <view class="section-header">
+      <view class="section-title">用户评价 ({{companion.reviewCount || 0}})</view>
+      <view class="toggle-reviews" bindtap="toggleReviews">
+        <text>{{showAllReviews ? '收起' : '展开全部'}}</text>
+        <text class="arrow">{{showAllReviews ? '↑' : '↓'}}</text>
+      </view>
+    </view>
+    <view class="reviews-list">
+      <view class="review-item" wx:for="{{showAllReviews ? reviews : reviews.slice(0, 3)}}" wx:key="index">
+        <view class="review-header">
+          <view class="review-rating">
+            <text class="star" wx:for="{{item.rating}}" wx:key="star" wx:for-item="star">⭐</text>
+          </view>
+          <text class="review-date">{{item.createdAt}}</text>
+        </view>
+        <view class="review-content" wx:if="{{item.comment}}">{{item.comment}}</view>
+        <view class="review-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+          <text class="review-tag" wx:for="{{item.tags}}" wx:key="tagIndex" wx:for-item="tag">
+            {{tag}}
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 固定底部操作栏 -->
+  <view class="fixed-bottom" wx:if="{{companion}}">
+    <base-button
+      type="secondary"
+      size="large"
+      text="联系咨询"
+      bindtap="contactConsult"
+    />
+    <base-button
+      type="primary"
+      size="large"
+      text="立即预约"
+      bindtap="makeAppointment"
+    />
+  </view>
+</view>
+

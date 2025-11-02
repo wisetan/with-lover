@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "陪诊师列表",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "empty-state": "/components/empty-state/empty-state"
+  }
+}
+

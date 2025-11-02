@@ -1,0 +1,40 @@
+<!--components/step-progress/step-progress.wxml-->
+<view class="step-progress step-progress--{{direction}}">
+  <view
+    class="step-item"
+    wx:for="{{steps}}"
+    wx:key="index"
+    wx:for-item="step"
+    wx:for-index="stepIndex"
+  >
+    <view class="step-item__icon">
+      <view
+        class="step-icon {{stepIndex <= current ? 'step-icon--active' : ''}}"
+      >
+        <view wx:if="{{stepIndex < current}}" class="step-icon__check">✓</view>
+        <view wx:else>{{stepIndex + 1}}</view>
+      </view>
+      <view
+        class="step-line"
+        wx:if="{{stepIndex < steps.length - 1 && direction === 'vertical'}}"
+      ></view>
+    </view>
+    <view class="step-item__content">
+      <view class="step-item__title {{stepIndex <= current ? 'step-item__title--active' : ''}}">
+        {{step.title || step}}
+      </view>
+      <view class="step-item__desc" wx:if="{{step.desc}}">
+        {{step.desc}}
+      </view>
+      <view class="step-item__time" wx:if="{{step.time}}">
+        {{step.time}}
+      </view>
+      <view class="step-item__evidence" wx:if="{{step.evidence}}">
+        <view class="step-evidence" bindtap="previewEvidence" data-index="{{stepIndex}}">
+          查看凭证
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+

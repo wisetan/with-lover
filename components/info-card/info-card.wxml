@@ -1,0 +1,23 @@
+<!--components/info-card/info-card.wxml-->
+<view class="info-card" bindtap="handleTap">
+  <view class="info-card__header">
+    <view class="info-card__avatar" wx:if="{{avatar}}">
+      <image src="{{avatar}}" mode="aspectFill" />
+    </view>
+    <view class="info-card__content flex-1">
+      <view class="info-card__title" wx:if="{{title}}">{{title}}</view>
+      <view class="info-card__subtitle" wx:if="{{subtitle}}">{{subtitle}}</view>
+      <slot name="content"></slot>
+    </view>
+    <view class="info-card__extra">
+      <view class="info-card__status" wx:if="{{status}}" style="color: {{statusColor}}">
+        {{status}}
+      </view>
+      <view class="info-card__arrow" wx:if="{{arrow}}">›</view>
+    </view>
+  </view>
+  <view class="info-card__body">
+    <slot></slot>
+  </view>
+</view>
+

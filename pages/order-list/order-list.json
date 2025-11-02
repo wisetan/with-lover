@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的订单",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "info-card": "/components/info-card/info-card",
+    "empty-state": "/components/empty-state/empty-state"
+  }
+}
+

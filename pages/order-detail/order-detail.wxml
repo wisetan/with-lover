@@ -1,0 +1,104 @@
+<!--pages/order-detail/order-detail.wxml-->
+<view class="order-detail-container">
+  <!-- 订单状态 -->
+  <view class="order-status-header" wx:if="{{order}}">
+    <view class="status-text" style="color: {{order.statusColor}}">
+      {{order.statusText}}
+    </view>
+    <view class="status-desc" wx:if="{{order.companion}}">
+      陪诊师：{{order.companion.name}}
+    </view>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="order-info-section card" wx:if="{{order}}">
+    <view class="section-title">订单信息</view>
+    <view class="info-list">
+      <view class="info-item">
+        <text class="info-label">医院：</text>
+        <text class="info-value">{{order.hospital}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">科室：</text>
+        <text class="info-value">{{order.department}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">服务时间：</text>
+        <text class="info-value">{{order.serviceTimeText}}</text>
+      </view>
+      <view class="info-item" wx:if="{{order.companion}}">
+        <text class="info-label">陪诊师：</text>
+        <text class="info-value">{{order.companion.name}}</text>
+      </view>
+      <view class="info-item" wx:if="{{order.patientInfo}}">
+        <text class="info-label">患者信息：</text>
+        <text class="info-value">{{order.patientInfo.name}} ({{order.patientInfo.age}}岁)</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 费用信息 -->
+  <view class="fee-section card" wx:if="{{order}}">
+    <view class="section-title">费用信息</view>
+    <view class="fee-list">
+      <view class="fee-item">
+        <text class="fee-label">保证金：</text>
+        <text class="fee-value">{{order.depositText}}</text>
+      </view>
+      <view class="fee-item">
+        <text class="fee-label">保证金状态：</text>
+        <text class="fee-status">{{order.depositStatus === 'paid' ? '已支付' : '未支付'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions-section" wx:if="{{order}}">
+    <base-button
+      wx:if="{{order.status === 'confirmed' || order.status === 'in_service'}}"
+      type="primary"
+      size="large"
+      text="查看服务跟踪"
+      block="{{true}}"
+      bindtap="viewTracking"
+    />
+    <base-button
+      wx:if="{{order.status === 'pending_payment'}}"
+      type="primary"
+      size="large"
+      text="支付保证金"
+      block="{{true}}"
+      bindtap="payDeposit"
+    />
+    <base-button
+      wx:if="{{order.status === 'completed' && !order.reviewed}}"
+      type="primary"
+      size="large"
+      text="评价服务"
+      block="{{true}}"
+      bindtap="goToReview"
+    />
+    <base-button
+      wx:if="{{order.companion && (order.status === 'confirmed' || order.status === 'in_service')}}"
+      type="secondary"
+      size="large"
+      text="联系陪诊师"
+      block="{{true}}"
+      bindtap="contactCompanion"
+    />
+    <base-button
+      wx:if="{{order.status === 'pending_payment' || order.status === 'confirmed'}}"
+      type="text"
+      size="medium"
+      text="取消订单"
+      block="{{true}}"
+      bindtap="cancelOrder"
+    />
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>
+

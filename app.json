@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/hospital-list/hospital-list",
+    "pages/companion-list/companion-list",
+    "pages/companion-detail/companion-detail",
+    "pages/companion-register/companion-register",
+    "pages/companion-edit/companion-edit",
+    "pages/order-create/order-create",
+    "pages/order-detail/order-detail",
+    "pages/order-tracking/order-tracking",
+    "pages/order-list/order-list",
+    "pages/review/review",
+    "pages/profile/profile",
+    "pages/companion-center/companion-center"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#1890FF",
+    "navigationBarTitleText": "陪诊服务",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FAFAFA",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#8C8C8C",
+    "selectedColor": "#1890FF",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "assets/icons/home.png",
+        "selectedIconPath": "assets/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/order-list/order-list",
+        "text": "我的订单",
+        "iconPath": "assets/icons/order.png",
+        "selectedIconPath": "assets/icons/order-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/icons/profile.png",
+        "selectedIconPath": "assets/icons/profile-active.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "cloud": true,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于推荐附近的医院和陪诊师"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation"],
+  "lazyCodeLoading": "requiredComponents"
+}
+

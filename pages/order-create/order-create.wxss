@@ -1,0 +1,137 @@
+/* pages/order-create/order-create.wxss */
+.order-create-container {
+  background-color: var(--background-gray);
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+.companion-card {
+  margin: var(--spacing-md);
+}
+
+.companion-info {
+  display: flex;
+  align-items: center;
+}
+
+.companion-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: var(--spacing-md);
+}
+
+.companion-detail {
+  flex: 1;
+}
+
+.companion-name {
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.companion-rating {
+  font-size: var(--font-sm);
+  color: var(--warning-orange);
+}
+
+.star {
+  margin-right: 4rpx;
+}
+
+.form-section {
+  padding: 0 var(--spacing-md);
+}
+
+.form-item {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+.form-label {
+  font-size: var(--font-md);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.required {
+  color: var(--error-red);
+  margin-left: 4rpx;
+}
+
+.form-item--error {
+  border-left: 4rpx solid var(--error-red);
+}
+
+.form-error {
+  font-size: var(--font-sm);
+  color: var(--error-red);
+  margin-top: var(--spacing-xs);
+  line-height: 1.4;
+}
+
+.time-picker-wrapper {
+  display: block;
+}
+
+.form-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-md);
+  color: var(--text-primary);
+  min-height: 48rpx;
+}
+
+.form-value--placeholder {
+  color: var(--text-secondary);
+}
+
+.arrow {
+  font-size: 32rpx;
+  color: var(--text-secondary);
+}
+
+.form-input {
+  font-size: var(--font-md);
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.form-textarea {
+  font-size: var(--font-md);
+  color: var(--text-primary);
+  width: 100%;
+  min-height: 120rpx;
+}
+
+.fee-notice {
+  margin: var(--spacing-md);
+}
+
+.notice-title {
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.notice-item {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-xs);
+}
+
+.fee-amount {
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-bold);
+}
+
+.notice-desc {
+  color: var(--text-secondary);
+}
+

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "注册陪诊师",
+  "usingComponents": {
+    "base-button": "/components/base-button/base-button"
+  }
+}
+

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "订单跟踪",
+  "usingComponents": {
+    "step-progress": "/components/step-progress/step-progress",
+    "base-button": "/components/base-button/base-button"
+  }
+}
+

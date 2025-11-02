@@ -1,0 +1,256 @@
+# 微信小程序项目规则
+
+## 项目结构规范
+
+1. **目录结构**：
+   - `pages/` - 页面目录
+   - `components/` - 组件目录
+   - `utils/` - 工具函数目录
+   - `assets/` - 静态资源目录
+   - `app.js` - 小程序入口文件
+   - `app.json` - 小程序全局配置
+   - `app.wxss` - 小程序全局样式
+
+2. **文件命名**：
+   - 页面/组件目录：使用小写字母和连字符，如 `user-profile`
+   - 工具文件：使用驼峰命名，如 `formatDate.js`
+   - 常量文件：使用大写字母和下划线，如 `API_CONFIG.js`
+
+## 代码规范
+
+### JavaScript 代码规范
+
+1. **使用 ES6+ 语法**：
+   - 优先使用 `const`，需要重新赋值时使用 `let`
+   - 使用箭头函数、解构赋值、模板字符串等现代语法
+   - 使用 `async/await` 处理异步操作
+
+2. **小程序 API 使用**：
+   ```javascript
+   // 正确的 API 调用方式
+   wx.request({
+     url: 'https://api.example.com/data',
+     method: 'GET',
+     success: (res) => {
+       // 处理成功
+     },
+     fail: (err) => {
+       // 处理失败
+     }
+   })
+   
+   // 或使用 Promise 封装
+   const result = await promisify(wx.request)({...})
+   ```
+
+3. **数据绑定**：
+   - 使用 `this.setData()` 更新数据，避免直接修改 `this.data`
+   - 批量更新数据时，一次性调用 `setData`
+   ```javascript
+   // ✅ 正确
+   this.setData({
+     name: 'John',
+     age: 25
+   })
+   
+   // ❌ 错误
+   this.data.name = 'John'
+   this.setData({ name: this.data.name })
+   ```
+
+4. **生命周期**：
+   - 合理使用页面生命周期：`onLoad`, `onShow`, `onReady`, `onHide`, `onUnload`
+   - 组件生命周期：`created`, `attached`, `ready`, `detached`
+
+### WXML 代码规范
+
+1. **数据绑定**：
+   ```xml
+   <!-- 正确使用 mustache 语法 -->
+   <view>{{title}}</view>
+   <view wx:if="{{isShow}}">显示内容</view>
+   ```
+
+2. **列表渲染**：
+   ```xml
+   <!-- 必须指定 wx:key -->
+   <view wx:for="{{list}}" wx:key="id">
+     {{item.name}}
+   </view>
+   ```
+
+3. **事件绑定**：
+   ```xml
+   <!-- 使用 bind 或 catch -->
+   <button bindtap="handleClick">点击</button>
+   <button catchtap="handleClick">阻止冒泡</button>
+   ```
+
+### WXSS 代码规范
+
+1. **使用 rpx 单位**：响应式单位，适配不同屏幕尺寸
+   ```css
+   .container {
+     width: 750rpx; /* 等于屏幕宽度 */
+     padding: 20rpx;
+   }
+   ```
+
+2. **避免使用固定像素**：尽量使用 rpx，特殊场景可用 px
+
+3. **样式隔离**：
+   - 组件使用 `styleIsolation` 控制样式隔离
+   - 避免全局样式污染
+
+## 组件开发规范
+
+1. **组件结构**：
+   - 每个组件包含 `.js`, `.wxml`, `.wxss`, `.json` 四个文件
+   - 组件命名使用小写字母和连字符
+
+2. **组件通信**：
+   - 父传子：使用 `properties`
+   - 子传父：使用 `triggerEvent` 触发自定义事件
+   ```javascript
+   // properties 定义
+   properties: {
+     title: {
+       type: String,
+       value: ''
+     }
+   }
+   
+   // 触发事件
+   this.triggerEvent('customEvent', { data: 'value' })
+   ```
+
+3. **组件生命周期**：
+   ```javascript
+   lifetimes: {
+     attached() {
+       // 组件实例进入页面节点树
+     },
+     detached() {
+       // 组件实例被从页面节点树移除
+     }
+   }
+   ```
+
+## 网络请求规范
+
+1. **统一封装**：
+   - 封装网络请求工具函数
+   - 统一处理错误、loading、token 等
+
+2. **请求拦截**：
+   ```javascript
+   // utils/request.js
+   const request = (options) => {
+     return new Promise((resolve, reject) => {
+       wx.request({
+         url: `${BASE_URL}${options.url}`,
+         header: {
+           'token': wx.getStorageSync('token')
+         },
+         ...options,
+         success: resolve,
+         fail: reject
+       })
+     })
+   }
+   ```
+
+## 错误处理
+
+1. **统一错误处理**：
+   ```javascript
+   try {
+     const result = await apiCall()
+   } catch (error) {
+     console.error('错误信息:', error)
+     wx.showToast({
+       title: '操作失败',
+       icon: 'none'
+     })
+   }
+   ```
+
+2. **用户友好提示**：
+   - 网络错误、数据错误等情况都要给用户明确的提示
+   - 使用 `wx.showToast` 或 `wx.showModal` 提示用户
+
+## 性能优化
+
+1. **图片优化**：
+   - 使用合适的图片格式（WebP、压缩后的图片）
+   - 懒加载长列表中的图片
+   - 使用云存储 CDN 加速
+
+2. **代码优化**：
+   - 避免在 `setData` 中设置大量数据
+   - 使用分包加载减少主包大小
+   - 合理使用缓存机制
+
+3. **页面优化**：
+   - 使用 `wx:if` 和 `hidden` 合理控制组件显示
+   - 长列表使用虚拟列表或分页加载
+
+## 数据存储
+
+1. **本地存储**：
+   ```javascript
+   // 同步存储
+   wx.setStorageSync('key', value)
+   const value = wx.getStorageSync('key')
+   
+   // 异步存储（大数据）
+   wx.setStorage({
+     key: 'key',
+     data: value
+   })
+   ```
+
+2. **存储规范**：
+   - 敏感信息不要存储在本地
+   - 定期清理过期缓存
+   - 控制存储大小
+
+## 安全规范
+
+1. **数据安全**：
+   - 不要在代码中硬编码敏感信息（API Key、Secret 等）
+   - 用户输入需要验证和转义
+   - 使用 HTTPS 请求
+
+2. **权限控制**：
+   - 合理使用用户授权（位置、相机、相册等）
+   - 请求权限时说明用途
+
+## 注释规范
+
+1. **函数注释**：
+   ```javascript
+   /**
+    * 格式化日期
+    * @param {Date|Number} date - 日期对象或时间戳
+    * @param {String} format - 格式化字符串，如 'YYYY-MM-DD'
+    * @returns {String} 格式化后的日期字符串
+    */
+   function formatDate(date, format) {
+     // ...
+   }
+   ```
+
+2. **组件注释**：组件顶部说明组件用途、props、events
+
+## 测试建议
+
+1. **真机测试**：在发布前进行真机测试
+2. **兼容性测试**：测试不同版本微信的兼容性
+3. **边界测试**：测试异常情况、网络错误等场景
+
+## 代码提交规范
+
+1. **提交信息**：使用清晰的提交信息，如 `feat: 添加用户登录功能`
+2. **代码审查**：提交前进行自测和代码检查
+

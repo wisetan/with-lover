@@ -1,0 +1,73 @@
+/* pages/order-list/order-list.wxss */
+.order-list-container {
+  background-color: var(--background-gray);
+  min-height: 100vh;
+}
+
+.tabs {
+  display: flex;
+  background: #FFFFFF;
+  border-bottom: 1rpx solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab-item {
+  flex: 1;
+  padding: var(--spacing-md);
+  text-align: center;
+  font-size: var(--font-md);
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.tab-item--active {
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-bold);
+}
+
+.tab-item--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 4rpx;
+  background: var(--primary-blue);
+  border-radius: 2rpx;
+}
+
+.order-list {
+  padding: var(--spacing-md);
+}
+
+.order-status {
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.order-info {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-sm);
+  margin-top: var(--spacing-xs);
+}
+
+.info-label {
+  color: var(--text-secondary);
+  margin-right: 8rpx;
+}
+
+.info-value {
+  color: var(--text-primary);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  color: var(--text-secondary);
+}
+

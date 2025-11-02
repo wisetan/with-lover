@@ -1,0 +1,132 @@
+/* pages/companion-center/companion-center.wxss */
+.companion-center-container {
+  background-color: var(--background-gray);
+  min-height: 100vh;
+}
+
+.info-card {
+  margin: var(--spacing-md);
+}
+
+.companion-header {
+  display: flex;
+  align-items: center;
+}
+
+.companion-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: var(--spacing-md);
+}
+
+.companion-detail {
+  flex: 1;
+}
+
+.companion-name {
+  font-size: var(--font-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.companion-rating {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.star {
+  color: var(--warning-orange);
+  margin-right: 4rpx;
+}
+
+.rating-count {
+  color: var(--text-secondary);
+  margin-left: 8rpx;
+}
+
+.companion-stats {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.edit-btn {
+  padding: 12rpx 24rpx;
+  background: var(--primary-blue);
+  color: #FFFFFF;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-sm);
+}
+
+.stats-section {
+  margin: var(--spacing-md);
+}
+
+.section-title {
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: var(--font-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-blue);
+  margin-bottom: var(--spacing-xs);
+}
+
+.stat-label {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.actions-section {
+  padding: 0 var(--spacing-md);
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.action-icon {
+  font-size: 40rpx;
+  margin-right: var(--spacing-md);
+  width: 48rpx;
+  text-align: center;
+}
+
+.action-title {
+  flex: 1;
+  font-size: var(--font-md);
+  color: var(--text-primary);
+}
+
+.action-arrow {
+  font-size: 32rpx;
+  color: var(--text-secondary);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  color: var(--text-secondary);
+}
+

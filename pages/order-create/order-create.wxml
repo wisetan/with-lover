@@ -1,0 +1,126 @@
+<!--pages/order-create/order-create.wxml-->
+<view class="order-create-container">
+  <!-- 陪诊师信息 -->
+  <view class="companion-card card" wx:if="{{companion}}">
+    <view class="companion-info">
+      <image class="companion-avatar" src="{{companion.avatar}}" mode="aspectFill" />
+      <view class="companion-detail">
+        <view class="companion-name">{{companion.name}}</view>
+        <view class="companion-rating">
+          <text class="star">⭐</text>
+          <text>{{companion.rating ? companion.rating.toFixed(1) : '0.0'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单表单 -->
+  <view class="form-section">
+    <!-- 医院选择 -->
+    <view class="form-item card {{formErrors.hospital ? 'form-item--error' : ''}}" bindtap="selectHospital">
+      <view class="form-label">医院 <text class="required">*</text></view>
+      <view class="form-value {{hospital ? '' : 'form-value--placeholder'}}">
+        {{hospital || '请选择医院'}}
+        <text class="arrow">›</text>
+      </view>
+      <view class="form-error" wx:if="{{formErrors.hospital}}">{{formErrors.hospital}}</view>
+    </view>
+
+    <!-- 科室选择 -->
+    <view class="form-item card {{formErrors.department ? 'form-item--error' : ''}}" bindtap="selectDepartment">
+      <view class="form-label">科室 <text class="required">*</text></view>
+      <view class="form-value {{department ? '' : 'form-value--placeholder'}}">
+        {{department || '请选择科室'}}
+        <text class="arrow">›</text>
+      </view>
+      <view class="form-error" wx:if="{{formErrors.department}}">{{formErrors.department}}</view>
+    </view>
+
+    <!-- 服务时间 -->
+    <picker
+      mode="date"
+      value="{{selectedDate}}"
+      start="{{dateStart}}"
+      end="{{dateEnd}}"
+      bindchange="onDateChange"
+      class="time-picker-wrapper"
+    >
+      <view class="form-item card {{formErrors.serviceTime ? 'form-item--error' : ''}}">
+        <view class="form-label">服务时间 <text class="required">*</text></view>
+        <view class="form-value {{serviceTime ? '' : 'form-value--placeholder'}}">
+          {{serviceTimeText || '请选择服务时间'}}
+          <text class="arrow">›</text>
+        </view>
+        <view class="form-error" wx:if="{{formErrors.serviceTime}}">{{formErrors.serviceTime}}</view>
+      </view>
+    </picker>
+
+    <!-- 患者姓名 -->
+    <view class="form-item card {{formErrors.patientName ? 'form-item--error' : ''}}">
+      <view class="form-label">患者姓名 <text class="required">*</text></view>
+      <input
+        class="form-input"
+        placeholder="请输入患者姓名"
+        value="{{patientName}}"
+        bindinput="onPatientNameInput"
+      />
+      <view class="form-error" wx:if="{{formErrors.patientName}}">{{formErrors.patientName}}</view>
+    </view>
+
+    <!-- 患者年龄 -->
+    <view class="form-item card {{formErrors.patientAge ? 'form-item--error' : ''}}">
+      <view class="form-label">患者年龄 <text class="required">*</text></view>
+      <input
+        class="form-input"
+        type="number"
+        placeholder="请输入患者年龄"
+        value="{{patientAge}}"
+        bindinput="onPatientAgeInput"
+      />
+      <view class="form-error" wx:if="{{formErrors.patientAge}}">{{formErrors.patientAge}}</view>
+    </view>
+
+    <!-- 病情描述 -->
+    <view class="form-item card">
+      <view class="form-label">病情描述</view>
+      <textarea
+        class="form-textarea"
+        placeholder="请输入病情描述（选填）"
+        value="{{patientCondition}}"
+        bindinput="onConditionInput"
+        maxlength="200"
+      />
+    </view>
+  </view>
+
+  <!-- 费用说明 -->
+  <view class="fee-notice card">
+    <view class="notice-title">费用说明</view>
+    <view class="notice-item">
+      <text>保证金：</text>
+      <text class="fee-amount">{{formatAmount(depositAmount * 100)}}</text>
+      <text class="notice-desc">（服务完成后退还）</text>
+    </view>
+    <view class="notice-item">
+      <text>医疗费：</text>
+      <text class="notice-desc">用户自行支付</text>
+    </view>
+    <view class="notice-item">
+      <text>服务费：</text>
+      <text class="notice-desc">服务完成后与陪诊师协商支付</text>
+    </view>
+  </view>
+
+  <!-- 底部提交按钮 -->
+  <view class="fixed-bottom">
+    <base-button
+      type="primary"
+      size="large"
+      text="提交订单"
+      block="{{true}}"
+      state="{{loading ? 'loading' : 'normal'}}"
+      bindtap="submitOrder"
+    />
+  </view>
+</view>
+

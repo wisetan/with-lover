@@ -1,0 +1,93 @@
+<!--pages/companion-list/companion-list.wxml-->
+<view class="companion-list-container">
+  <!-- 搜索栏 -->
+  <view class="search-section">
+    <view class="search-bar">
+      <input
+        class="search-input"
+        placeholder="搜索陪诊师姓名或服务范围"
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchSubmit"
+      />
+      <view class="search-icon">🔍</view>
+    </view>
+    <view class="filter-btn" bindtap="onFilterTap">
+      <text>筛选</text>
+    </view>
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-tags" wx:if="{{hospitalName}}">
+    <view class="filter-tag">
+      <text>{{hospitalName}}</text>
+      <text class="tag-close" bindtap="clearHospitalFilter">×</text>
+    </view>
+  </view>
+
+  <!-- 陪诊师列表 -->
+  <view class="companion-list" wx:if="{{companionList.length > 0}}">
+    <view
+      class="companion-item"
+      wx:for="{{companionList}}"
+      wx:key="_id"
+      bindtap="onCompanionTap"
+      data-id="{{item._id}}"
+    >
+      <view class="companion-avatar-wrapper">
+        <image class="companion-avatar" src="{{item.avatar}}" mode="aspectFill" lazy-load="{{true}}" />
+        <view class="companion-certified" wx:if="{{item.certification && item.certification.certified}}">
+          ✓
+        </view>
+      </view>
+      
+      <view class="companion-info">
+        <view class="companion-header">
+          <view class="companion-name">{{item.name}}</view>
+          <view class="companion-rating">
+            <text class="rating-star">⭐</text>
+            <text class="rating-score">{{item.ratingText}}</text>
+            <text class="rating-count">({{item.reviewCount || 0}}评价)</text>
+          </view>
+        </view>
+
+        <view class="companion-stats">
+          <text class="stat-item">接单数：{{item.orderCount || 0}}单</text>
+          <text class="stat-divider">·</text>
+          <text class="stat-item" wx:if="{{item.distance}}">距离：{{item.distance}}米</text>
+        </view>
+
+        <view class="companion-scope">
+          <text class="scope-label">服务范围：</text>
+          <text class="scope-text">{{item.serviceScopeText}}</text>
+        </view>
+
+        <view class="companion-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+          <text class="tag" wx:for="{{item.tags}}" wx:key="index" wx:for-item="tag">
+            {{tag}}
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <empty-state
+    wx:if="{{!loading && companionList.length === 0}}"
+    icon="👨‍⚕️"
+    title="{{keyword ? '未找到相关陪诊师' : '暂无陪诊师'}}"
+    description="{{keyword ? '试试其他关键词吧' : '敬请期待'}}"
+    buttonText="{{keyword ? '' : ''}}"
+  />
+
+  <!-- 加载状态 -->
+  <view class="loading-wrapper" wx:if="{{loading && companionList.length > 0}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 没有更多数据 -->
+  <view class="no-more" wx:if="{{!hasMore && companionList.length > 0}}">
+    <text>没有更多数据了</text>
+  </view>
+</view>
+

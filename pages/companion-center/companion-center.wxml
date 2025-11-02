@@ -1,0 +1,81 @@
+<!--pages/companion-center/companion-center.wxml-->
+<view class="companion-center-container">
+  <!-- 陪诊师信息卡片 -->
+  <view class="info-card card" wx:if="{{companionInfo}}">
+    <view class="companion-header">
+      <image class="companion-avatar" src="{{companionInfo.avatar}}" mode="aspectFill" />
+      <view class="companion-detail">
+        <view class="companion-name">{{companionInfo.name}}</view>
+        <view class="companion-rating">
+          <text class="star">⭐</text>
+          <text>{{companionInfo.rating ? companionInfo.rating.toFixed(1) : '0.0'}}</text>
+          <text class="rating-count">({{companionInfo.reviewCount || 0}}评价)</text>
+        </view>
+        <view class="companion-stats">
+          <text>接单数：{{companionInfo.orderCount || 0}}单</text>
+        </view>
+      </view>
+      <view class="edit-btn" bindtap="editProfile">
+        <text>编辑</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单统计 -->
+  <view class="stats-section card">
+    <view class="section-title">订单统计</view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <view class="stat-value">{{orderStats.today}}</view>
+        <view class="stat-label">今日</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{orderStats.week}}</view>
+        <view class="stat-label">本周</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{orderStats.month}}</view>
+        <view class="stat-label">本月</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{orderStats.total}}</view>
+        <view class="stat-label">总计</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="actions-section">
+    <view class="action-item card" bindtap="viewOrders">
+      <view class="action-icon">📋</view>
+      <view class="action-title">我的订单</view>
+      <text class="action-arrow">›</text>
+    </view>
+    <view class="action-item card" bindtap="manageSchedule">
+      <view class="action-icon">📅</view>
+      <view class="action-title">可预约时间</view>
+      <text class="action-arrow">›</text>
+    </view>
+    <view class="action-item card" bindtap="editProfile">
+      <view class="action-icon">✏️</view>
+      <view class="action-title">编辑资料</view>
+      <text class="action-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <empty-state
+    wx:if="{{!loading && !companionInfo}}"
+    icon="👨‍⚕️"
+    title="还不是陪诊师"
+    description="创建陪诊师资料，开始接单赚钱"
+    buttonText="立即注册"
+    bind:buttonTap="editProfile"
+  />
+</view>
+

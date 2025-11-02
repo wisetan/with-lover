@@ -1,0 +1,73 @@
+<!--pages/home/home.wxml-->
+<view class="home-container">
+  <!-- 搜索栏 -->
+  <view class="home-header">
+    <view class="search-bar">
+      <input
+        class="search-input"
+        placeholder="搜索医院或科室"
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchSubmit"
+      />
+      <view class="search-icon">🔍</view>
+    </view>
+  </view>
+
+  <!-- 快速入口 -->
+  <view class="quick-actions">
+    <view class="quick-item" bindtap="navigateToHospitalList">
+      <view class="quick-icon">🏥</view>
+      <text>找医院</text>
+    </view>
+    <view class="quick-item" bindtap="navigateToCompanionList">
+      <view class="quick-icon">👨‍⚕️</view>
+      <text>找陪诊师</text>
+    </view>
+    <view class="quick-item" bindtap="navigateToOrderList">
+      <view class="quick-icon">📋</view>
+      <text>我的预约</text>
+    </view>
+  </view>
+
+  <!-- 推荐陪诊师 -->
+  <view class="section">
+    <view class="section-title">推荐陪诊师</view>
+    <scroll-view class="companion-scroll" scroll-x="true">
+      <view class="companion-item" wx:for="{{companionList}}" wx:key="id" bindtap="onCompanionTap" data-id="{{item.id}}">
+        <image class="companion-avatar" src="{{item.avatar}}" mode="aspectFill" />
+        <view class="companion-name">{{item.name}}</view>
+        <view class="companion-rating">
+          <text class="rating-star">⭐</text>
+          <text>{{item.rating || 0}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 附近医院 -->
+  <view class="section">
+    <view class="section-title">附近医院</view>
+    <view class="hospital-list">
+      <info-card
+        wx:for="{{hospitalList}}"
+        wx:key="id"
+        title="{{item.name}}"
+        subtitle="{{item.distance}} · {{item.departmentCount}}个科室"
+        bindtap="onHospitalTap"
+        data-id="{{item.id}}"
+        arrow="{{true}}"
+      >
+        <view slot="extra">
+          <base-button type="primary" size="small" text="选择陪诊师" />
+        </view>
+      </info-card>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>
+

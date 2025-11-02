@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "陪诊师中心",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/empty-state"
+  }
+}
+

@@ -1,0 +1,81 @@
+/* pages/order-detail/order-detail.wxss */
+.order-detail-container {
+  background-color: var(--background-gray);
+  min-height: 100vh;
+  padding-bottom: var(--spacing-xl);
+}
+
+.order-status-header {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, #0050B3 100%);
+  padding: var(--spacing-lg) var(--spacing-md);
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.status-text {
+  font-size: var(--font-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.status-desc {
+  font-size: var(--font-md);
+  opacity: 0.9;
+}
+
+.order-info-section,
+.fee-section {
+  margin: var(--spacing-md);
+}
+
+.section-title {
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.info-list,
+.fee-list {
+  padding: var(--spacing-sm) 0;
+}
+
+.info-item,
+.fee-item {
+  display: flex;
+  padding: var(--spacing-sm) 0;
+  font-size: var(--font-md);
+}
+
+.info-label,
+.fee-label {
+  color: var(--text-secondary);
+  width: 160rpx;
+  flex-shrink: 0;
+}
+
+.info-value,
+.fee-value {
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.fee-status {
+  color: var(--success-green);
+  font-weight: var(--font-weight-bold);
+}
+
+.actions-section {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  color: var(--text-secondary);
+}
+

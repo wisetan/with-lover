@@ -1,0 +1,62 @@
+/* pages/hospital-list/hospital-list.wxss */
+.hospital-list-container {
+  background-color: var(--background-gray);
+  min-height: 100vh;
+}
+
+.search-section {
+  padding: var(--spacing-md);
+  background: #FFFFFF;
+  margin-bottom: var(--spacing-sm);
+}
+
+.search-bar {
+  position: relative;
+  background: var(--background-gray);
+  border-radius: var(--border-radius-lg);
+  padding: 0 var(--spacing-md);
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  height: 64rpx;
+  font-size: var(--font-md);
+  color: var(--text-primary);
+}
+
+.search-icon {
+  font-size: 32rpx;
+  color: var(--text-secondary);
+}
+
+.hospital-list {
+  padding: 0 var(--spacing-md);
+}
+
+.hospital-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--spacing-xs);
+}
+
+.info-label {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.info-departments {
+  font-size: var(--font-sm);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  color: var(--text-secondary);
+}
+

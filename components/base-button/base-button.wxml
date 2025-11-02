@@ -1,0 +1,10 @@
+<!--components/base-button/base-button.wxml-->
+<button
+  class="base-button base-button--{{type}} base-button--{{size}} base-button--{{state}} {{block ? 'base-button--block' : ''}}"
+  disabled="{{state === 'disabled'}}"
+  loading="{{state === 'loading'}}"
+  bindtap="handleTap"
+>
+  <slot>{{text}}</slot>
+</button>
+

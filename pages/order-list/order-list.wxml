@@ -1,0 +1,56 @@
+<!--pages/order-list/order-list.wxml-->
+<view class="order-list-container">
+  <!-- Tab切换 -->
+  <view class="tabs">
+    <view
+      class="tab-item {{currentTab === item.key ? 'tab-item--active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="key"
+      data-tab="{{item.key}}"
+      bindtap="onTabChange"
+    >
+      {{item.label}}
+    </view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="order-list" wx:if="{{orderList.length > 0}}">
+    <info-card
+      wx:for="{{orderList}}"
+      wx:key="_id"
+      title="{{item.hospital}}"
+      subtitle="{{item.department}} · {{item.serviceTimeText}}"
+      bindtap="onOrderTap"
+      data-id="{{item._id}}"
+      arrow="{{true}}"
+    >
+      <view slot="extra">
+        <view class="order-status" style="color: {{item.statusColor}}">
+          {{item.statusText}}
+        </view>
+      </view>
+      <view slot="content">
+        <view class="order-info">
+          <text class="info-label">陪诊师：</text>
+          <text class="info-value">{{item.companion ? item.companion.name : '待分配'}}</text>
+        </view>
+      </view>
+    </info-card>
+  </view>
+
+  <!-- 空状态 -->
+  <empty-state
+    wx:if="{{!loading && orderList.length === 0}}"
+    icon="📋"
+    title="暂无订单"
+    description="{{currentTab === 'all' ? '快去预约一位贴心的陪诊师吧' : '暂无此类订单'}}"
+    buttonText="{{currentTab === 'all' ? '立即预约' : ''}}"
+    bind:buttonTap="navigateToHome"
+  />
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>
+

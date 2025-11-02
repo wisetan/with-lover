@@ -1,0 +1,67 @@
+/* components/base-button/base-button.wxss */
+.base-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-md);
+  font-weight: var(--font-weight-normal);
+  border: none;
+  outline: none;
+  transition: all 0.3s;
+}
+
+/* 按钮类型 */
+.base-button--primary {
+  background-color: var(--primary-blue);
+  color: #FFFFFF;
+}
+
+.base-button--secondary {
+  background-color: #FFFFFF;
+  color: var(--primary-blue);
+  border: 1rpx solid var(--primary-blue);
+}
+
+.base-button--text {
+  background-color: transparent;
+  color: var(--primary-blue);
+  padding: 0;
+}
+
+/* 按钮大小 */
+.base-button--large {
+  height: 88rpx;
+  padding: 0 32rpx;
+  font-size: var(--font-lg);
+}
+
+.base-button--medium {
+  height: 72rpx;
+  padding: 0 24rpx;
+  font-size: var(--font-md);
+}
+
+.base-button--small {
+  height: 56rpx;
+  padding: 0 16rpx;
+  font-size: var(--font-sm);
+}
+
+/* 按钮状态 */
+.base-button--disabled {
+  background-color: #F5F5F5;
+  color: #BFBFBF;
+  border-color: #F5F5F5;
+}
+
+.base-button--loading {
+  opacity: 0.8;
+}
+
+/* 块级按钮 */
+.base-button--block {
+  width: 100%;
+  display: flex;
+}
+

@@ -1,0 +1,236 @@
+/* pages/companion-detail/companion-detail.wxss */
+.companion-detail-container {
+  background-color: var(--background-gray);
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+.companion-info-card {
+  margin: var(--spacing-md);
+}
+
+.companion-header {
+  display: flex;
+}
+
+.avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  margin-right: var(--spacing-md);
+}
+
+.companion-avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--border-color);
+}
+
+.certified-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 4rpx 12rpx;
+  background: var(--success-green);
+  color: #FFFFFF;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+  border: 2rpx solid #FFFFFF;
+}
+
+.companion-base-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.companion-name {
+  font-size: var(--font-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.companion-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.rating-text {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  margin-right: var(--spacing-xs);
+}
+
+.rating-star {
+  font-size: 28rpx;
+  margin-right: 4rpx;
+}
+
+.rating-score {
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--warning-orange);
+  margin-right: var(--spacing-xs);
+}
+
+.rating-count {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.companion-scope {
+  display: flex;
+  align-items: flex-start;
+  font-size: var(--font-md);
+  margin-bottom: var(--spacing-xs);
+}
+
+.scope-label {
+  color: var(--text-secondary);
+  margin-right: 8rpx;
+  flex-shrink: 0;
+}
+
+.scope-text {
+  color: var(--text-primary);
+  flex: 1;
+  word-break: break-all;
+}
+
+.companion-stats {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.section-card {
+  margin: 0 var(--spacing-md) var(--spacing-md);
+}
+
+.section-title {
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.toggle-reviews {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-sm);
+  color: var(--primary-blue);
+}
+
+.arrow {
+  margin-left: 4rpx;
+}
+
+.time-slot-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.time-slot-item {
+  width: 30%;
+  padding: var(--spacing-sm);
+  background: var(--background-gray);
+  border-radius: var(--border-radius-md);
+  margin-right: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.time-day {
+  font-size: var(--font-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.time-slots {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.reviews-list {
+  margin-top: var(--spacing-md);
+}
+
+.review-item {
+  padding: var(--spacing-md) 0;
+  border-bottom: 1rpx solid var(--border-color);
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xs);
+}
+
+.review-rating {
+  display: flex;
+}
+
+.star {
+  font-size: 24rpx;
+  margin-right: 2rpx;
+}
+
+.review-date {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.review-content {
+  font-size: var(--font-md);
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xs);
+}
+
+.review-tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.review-tag {
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  background: #F0F7FF;
+  color: var(--primary-blue);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-sm);
+  margin-right: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  color: var(--text-secondary);
+}
+
+.fixed-bottom {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+.fixed-bottom base-button {
+  flex: 1;
+}
+

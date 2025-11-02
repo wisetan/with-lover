@@ -1,0 +1,227 @@
+/* pages/companion-list/companion-list.wxss */
+.companion-list-container {
+  background-color: var(--background-gray);
+  min-height: 100vh;
+}
+
+/* 搜索区域 */
+.search-section {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: #FFFFFF;
+  margin-bottom: var(--spacing-sm);
+}
+
+.search-bar {
+  flex: 1;
+  position: relative;
+  background: var(--background-gray);
+  border-radius: var(--border-radius-lg);
+  padding: 0 var(--spacing-md);
+  display: flex;
+  align-items: center;
+  margin-right: var(--spacing-sm);
+}
+
+.search-input {
+  flex: 1;
+  height: 64rpx;
+  font-size: var(--font-md);
+  color: var(--text-primary);
+}
+
+.search-icon {
+  font-size: 32rpx;
+  color: var(--text-secondary);
+}
+
+.filter-btn {
+  padding: 16rpx 24rpx;
+  font-size: var(--font-md);
+  color: var(--primary-blue);
+  white-space: nowrap;
+}
+
+/* 筛选标签 */
+.filter-tags {
+  display: flex;
+  padding: 0 var(--spacing-md) var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.filter-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8rpx 16rpx;
+  background: var(--primary-blue);
+  color: #FFFFFF;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-sm);
+  margin-right: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.tag-close {
+  margin-left: 8rpx;
+  font-size: 32rpx;
+  line-height: 1;
+}
+
+/* 陪诊师列表 */
+.companion-list {
+  padding: 0 var(--spacing-md);
+}
+
+.companion-item {
+  display: flex;
+  background: #FFFFFF;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--box-shadow-sm);
+}
+
+.companion-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  margin-right: var(--spacing-md);
+}
+
+.companion-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--border-color);
+}
+
+.companion-certified {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40rpx;
+  height: 40rpx;
+  background: var(--success-green);
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: var(--font-weight-bold);
+  border: 2rpx solid #FFFFFF;
+}
+
+.companion-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.companion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xs);
+}
+
+.companion-name {
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.companion-rating {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-sm);
+}
+
+.rating-star {
+  margin-right: 4rpx;
+  font-size: 28rpx;
+}
+
+.rating-score {
+  color: var(--warning-orange);
+  font-weight: var(--font-weight-bold);
+  margin-right: 4rpx;
+}
+
+.rating-count {
+  color: var(--text-secondary);
+}
+
+.companion-stats {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.stat-item {
+  color: var(--text-secondary);
+}
+
+.stat-divider {
+  margin: 0 var(--spacing-xs);
+  color: var(--text-secondary);
+}
+
+.companion-scope {
+  display: flex;
+  align-items: flex-start;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.6;
+}
+
+.scope-label {
+  flex-shrink: 0;
+  margin-right: 8rpx;
+}
+
+.scope-text {
+  flex: 1;
+  word-break: break-all;
+}
+
+.companion-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: var(--spacing-xs);
+}
+
+.tag {
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  background: #F0F7FF;
+  color: var(--primary-blue);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-sm);
+  margin-right: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* 加载状态 */
+.loading-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-lg);
+}
+
+.loading-text {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+/* 没有更多数据 */
+.no-more {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+

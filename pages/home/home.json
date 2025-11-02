@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "info-card": "/components/info-card/info-card",
+    "base-button": "/components/base-button/base-button"
+  }
+}
+

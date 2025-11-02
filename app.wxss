@@ -1,0 +1,238 @@
+/**app.wxss**/
+/* 全局样式文件 - 基于 UIUE 设计规范 */
+
+/* ========== 设计变量（使用 CSS 变量） ========== */
+page {
+  /* 主色调 - 医疗信任感 */
+  --primary-blue: #1890FF;
+  --success-green: #52C41A;
+  --warning-orange: #FA8C16;
+  
+  /* 中性色 */
+  --text-primary: #262626;
+  --text-secondary: #8C8C8C;
+  --border-color: #F0F0F0;
+  --background-gray: #FAFAFA;
+  
+  /* 语义色 */
+  --error-red: #FF4D4F;
+  
+  /* 字体大小 */
+  --font-xl: 18px;
+  --font-lg: 16px;
+  --font-md: 14px;
+  --font-sm: 12px;
+  
+  /* 字重 */
+  --font-weight-bold: 600;
+  --font-weight-normal: 400;
+  
+  /* 间距 */
+  --spacing-xs: 8rpx;
+  --spacing-sm: 12rpx;
+  --spacing-md: 16rpx;
+  --spacing-lg: 24rpx;
+  --spacing-xl: 32rpx;
+  
+  /* 圆角 */
+  --border-radius-sm: 4rpx;
+  --border-radius-md: 8rpx;
+  --border-radius-lg: 12rpx;
+  
+  /* 阴影 */
+  --box-shadow-sm: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+  --box-shadow-md: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  
+  /* 基础样式 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--font-md);
+  color: var(--text-primary);
+  background-color: var(--background-gray);
+  line-height: 1.5;
+}
+
+/* ========== 通用布局 ========== */
+.container {
+  min-height: 100vh;
+  background-color: var(--background-gray);
+}
+
+.page-container {
+  padding: var(--spacing-md);
+}
+
+/* ========== 通用文字样式 ========== */
+.text-xl {
+  font-size: var(--font-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-lg {
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-md {
+  font-size: var(--font-md);
+  font-weight: var(--font-weight-normal);
+}
+
+.text-sm {
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-normal);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-blue {
+  color: var(--primary-blue);
+}
+
+.text-green {
+  color: var(--success-green);
+}
+
+.text-orange {
+  color: var(--warning-orange);
+}
+
+.text-red {
+  color: var(--error-red);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* ========== 通用间距 ========== */
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.p-xs { padding: var(--spacing-xs); }
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+
+/* ========== 通用卡片样式 ========== */
+.card {
+  background: #FFFFFF;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--box-shadow-sm);
+}
+
+.card-title {
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ========== 通用分割线 ========== */
+.divider {
+  height: 1rpx;
+  background-color: var(--border-color);
+  margin: var(--spacing-md) 0;
+}
+
+/* ========== 通用按钮容器 ========== */
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
+  background: #FFFFFF;
+  box-shadow: 0 -2rpx 8rpx rgba(0, 0, 0, 0.08);
+  z-index: 100;
+}
+
+/* ========== Flex 布局工具类 ========== */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* ========== 通用空状态 ========== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) var(--spacing-md);
+  min-height: 400rpx;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+.empty-title {
+  font-size: var(--font-lg);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.empty-desc {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* ========== 加载状态 ========== */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+}
+
+.loading-text {
+  margin-left: var(--spacing-sm);
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+}
+

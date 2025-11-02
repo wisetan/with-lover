@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "陪诊师详情",
+  "enableShareAppMessage": true,
+  "usingComponents": {
+    "base-button": "/components/base-button/base-button"
+  }
+}
+
